@@ -1,6 +1,7 @@
 exports.up = function(knex) {
     //create user for hof table
     //create user for resolver table
+    //create user for reports table
     //create read user for graphana
     return knex
         .raw(`

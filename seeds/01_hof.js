@@ -6,9 +6,9 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('hof').insert([
-        {type: 'nrm', ip: '192.168.0.1'},
-        {type: 'dtn', ip: '192.168.0.1'},
-        {type: 'referral', ip: '192.168.0.1'}
+        {type: 'nrm', ip: '192.168.0.1', success: 'true'},
+        {type: 'dtn', ip: '192.168.0.1', success: 'false'},
+        {type: 'referral', ip: '192.168.0.1', success: 'true'}
       ]);
     });
 };

@@ -5,9 +5,9 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('resolver').insert([
-        {id: 1},
-        {id: 2},
-        {id: 3}
+        {id: 1, success: 'true'},
+        {id: 2, success: 'true'},
+        {id: 3, success: 'true'}
       ]);
     });
 };

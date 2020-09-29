@@ -12,6 +12,7 @@ You'll need to set the following env vars:
 HOF_USER_PASS       | Password for the hof USER
 RESOLVER_USER_PASS  | Password for the resolver USER
 GRAFANA_USER_PASS   | Password for the graphana USER
+REPORTS_USER_PASS   | Password for the reports USER
 NODE_ENV            | So knex knows what config to run against
 DB_HOST             | The postgres db host
 DB_USER             | The postgres db username

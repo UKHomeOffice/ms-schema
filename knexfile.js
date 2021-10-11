@@ -17,9 +17,9 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   },
-
   production: {
-    client: 'postgresql',
+    client: 'pg',
+    version: '8.7.1',
     connection: {
       host : process.env.DB_HOST,
       user : process.env.DB_USER,

@@ -12,7 +12,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "knex": "^0.20.4",
-    "pg": "^7.15.0"
+    "knex": "^0.95.11",
+    "pg": "^8.7.1"
   }
 }

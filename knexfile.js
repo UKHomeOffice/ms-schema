@@ -4,6 +4,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
+    version: '8.7.1',
     connection: {
       database: 'knex',
       user:     'knex',
@@ -20,6 +21,7 @@ module.exports = {
 
   production: {
     client: 'postgresql',
+    version: '8.7.1',
     connection: {
       host : process.env.DB_HOST,
       user : process.env.DB_USER,

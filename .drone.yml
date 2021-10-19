@@ -1,38 +1,67 @@
-matrix:
-  NAME:
-    - ukhomeofficedigital/ms-schema
-  MAJOR:
-    - 1
-  MINOR:
-    - 1
-  PATCH:
-    - 0
-  DOCKER_USERNAME:
-    - ukhomeofficedigital+ms_schema
-  DOCKER_REPO:
-    - quay.io
-pipeline:
-  build_app:
-    image: docker
-    environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker build -t ms-schema .
-    when:
-      event: pull_request
+---
+kind: pipeline
+name: default
+type: kubernetes
 
-  docker-build-and-push:
-    image: ukhomeoffice/drone-docker
-    secrets: [ docker_password ]
-    username: '${DOCKER_USERNAME}'
-    repo: '${DOCKER_REPO}/${NAME}'
-    registry: '${DOCKER_REPO}'
-    tags:
-      - '${MAJOR}.${MINOR}.${PATCH}-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}'
-      - '${MAJOR}.${MINOR}.${PATCH}'
-      - '${MAJOR}.${MINOR}'
-      - '${MAJOR}'
-      - 'latest'
+environment:
+  IMAGE_URL: quay.io/ukhomeofficedigital
+  IMAGE_REPO: ms-schema
+
+trigger:
+  branch:
+    - master
+
+steps:
+  - name: setup
+    pull: if-not-exists
+    image: node:14
+    commands:
+      - yarn install --frozen-lockfile
     when:
-      event: push
       branch: master
+      event: [push, pull_request]
+
+  - name: linting
+    pull: if-not-exists
+    image: node:14
+    commands:
+      - yarn run test:lint
+    when:
+      branch: master
+      event: [push, pull_request]
+
+  - name: build_image
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    commands:
+      - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+      - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
+    volumes:
+      - name: dockersock
+        path: /var/run
+    when:
+      branch: master
+      event: [push, pull_request]
+
+  - name: image_to_quay
+    pull: if-not-exists
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    environment:
+      DOCKER_PASSWORD:
+        from_secret: DOCKER_PASSWORD
+    commands:
+    - docker login -u="ukhomeofficedigital+ms_schema" -p=$${DOCKER_PASSWORD} quay.io
+    - docker tag $${IMAGE_REPO}:ms-migrations-$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:ms-migrations-$${DRONE_COMMIT_SHA}
+    - docker push $${IMAGE_URL}/$${IMAGE_REPO}:ms-migrations-$${DRONE_COMMIT_SHA}
+    when:
+      branch: master
+      event: [push, pull_request]
+
+services:
+  - name: docker
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+
+volumes:
+  - name: dockersock
+    temp: {}
+
+...

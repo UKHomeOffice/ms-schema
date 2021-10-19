@@ -1,13 +1,11 @@
 // Update with your config settings.
 
 module.exports = {
-
   development: {
-    client: 'postgresql',
-    version: '8.7.1',
+    client: process.env.CLIENT || 'postgresql',
     connection: {
-      database: 'knex',
-      user:     'knex',
+      database: 'knex_session',
+      user: 'knex',
       password: 'knex'
     },
     pool: {
@@ -18,15 +16,14 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   },
-
   production: {
-    client: 'postgresql',
+    client: 'pg',
     version: '8.7.1',
     connection: {
-      host : process.env.DB_HOST,
-      user : process.env.DB_USER,
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
       password: process.env.DB_PASS,
-      database : process.env.DB_NAME
+      database: process.env.DB_NAME
     },
     pool: {
       min: 2,
@@ -36,5 +33,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };

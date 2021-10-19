@@ -1,10 +1,10 @@
-exports.up = function(knex) {
-    //create user for hof table
-    //create user for resolver table
-    //create user for reports table
-    //create read user for graphana
-    return knex
-        .raw(`
+exports.up = function (knex) {
+  // create user for hof table
+  // create user for resolver table
+  // create user for reports table
+  // create read user for graphana
+  return knex
+    .raw(`
             CREATE USER hof WITH PASSWORD '${process.env.HOF_USER_PASS}';
             GRANT INSERT ON hof TO hof;
             GRANT ALL ON SEQUENCE hof_id_seq to hof;
@@ -16,9 +16,9 @@ exports.up = function(knex) {
         `);
 };
 
-exports.down = function(knex) {
-    return knex
-        .raw(`
+exports.down = function (knex) {
+  return knex
+    .raw(`
             DROP OWNED BY hof;
             DROP USER hof;
             DROP OWNED BY resolver;
@@ -27,4 +27,3 @@ exports.down = function(knex) {
             DROP USER grafana;
         `);
 };
-  

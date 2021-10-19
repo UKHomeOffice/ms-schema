@@ -4,6 +4,14 @@ A simple container to run migrations on the MS audit database
 
 This will set up required users and tables in order for audit data to be reported from nrm-hof and icasework resolver which can later be read by a grafana.
 
+## DB Users
+```
+hof      | User for the modern slavery hof application to post audit data
+grafana  | User for the dashboard to get audit data
+resolver | User for the icasework resolver to post audit data
+reports  | User for save-return-lookup-ui, save-return-api, save-return-email-alerts services to get and post session data
+```
+
 ### Environment variables
 
 You'll need to set the following env vars:

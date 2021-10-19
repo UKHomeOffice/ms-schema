@@ -1,14 +1,14 @@
 
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.createTable('duplicates', table => {
     table.increments();
-    table.timestamps(true, true)
-    table.boolean('duplicate');
-    table.string('case_id_for_duplicate');
-    table.string('external_id_for_duplicate');
+    table.timestamps(true, true);
+    table.boolean('duplicate').notNullable();
+    table.string('case_id');
+    table.string('external_id').notNullable();
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTable('duplicates');
 };

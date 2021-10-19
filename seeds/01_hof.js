@@ -1,6 +1,6 @@
 'use strict';
 
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('hof').del()
     .then(function () {

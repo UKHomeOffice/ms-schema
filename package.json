@@ -1,18 +1,27 @@
 {
   "name": "ms-schema",
   "version": "1.1.0",
-  "description": "",
-  "main": "knex.js",
-  "scripts": {
-    "test": "npm run migrate && npm run seed && npm run rollback",
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
-    "seed": "knex seed:run"
+  "description": "An migrations repo for Modern Slavery which created images for Kube Jobs",
+  "main": "knexfile.js",
+  "engines": {
+    "node": "^14.15.0"
   },
-  "author": "",
+  "scripts": {
+    "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",
+    "db:setup": "yarn run db:migrate && yarn run db:seed",
+    "db:test": "yarn run db:setup && yarn run db:rollback",
+    "db:migrate": "knex migrate:latest",
+    "db:rollback": "knex migrate:rollback",
+    "db:seed": "knex seed:run"
+  },
+  "author": "Sulthan Ahmed & Alex Swann",
   "license": "MIT",
   "dependencies": {
     "knex": "^0.95.11",
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-hof": "^1.2.1"
   }
 }

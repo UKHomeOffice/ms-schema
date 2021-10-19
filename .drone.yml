@@ -50,8 +50,8 @@ steps:
         from_secret: DOCKER_PASSWORD
     commands:
     - docker login -u="ukhomeofficedigital+ms_schema" -p=$${DOCKER_PASSWORD} quay.io
-    - docker tag $${IMAGE_REPO}:ms-migrations-$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:ms-migrations-$${DRONE_COMMIT_SHA}
-    - docker push $${IMAGE_URL}/$${IMAGE_REPO}:ms-migrations-$${DRONE_COMMIT_SHA}
+    - docker tag $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
+    - docker push $${IMAGE_URL}/$${IMAGE_REPO}:$${DRONE_COMMIT_SHA}
     when:
       branch: master
       event: [push, pull_request]

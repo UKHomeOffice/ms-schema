@@ -10,14 +10,15 @@
     "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",
     "db:setup": "yarn run db:migrate && yarn run db:seed",
     "db:test": "yarn run db:setup && yarn run db:rollback",
-    "db:migrate": "knex migrate:latest",
-    "db:rollback": "knex migrate:rollback",
+    "db:migrate": "knex-migrate up --to 20211011151008_user",
+    "db:rollback": "knex-migrate down",
     "db:seed": "knex seed:run"
   },
   "author": "Sulthan Ahmed & Alex Swann",
   "license": "MIT",
   "dependencies": {
     "knex": "^0.95.11",
+    "knex-migrate": "^1.7.4",
     "pg": "^8.7.1"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "ms-schema",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "An migrations repo for Modern Slavery which created images for Kube Jobs",
   "main": "knexfile.js",
   "engines": {
@@ -10,8 +10,8 @@
     "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",
     "db:setup": "yarn run db:migrate && yarn run db:seed",
     "db:test": "yarn run db:setup && yarn run db:rollback",
-    "db:migrate": "knex-migrate up --to 20211011151008_user",
-    "db:rollback": "knex-migrate down",
+    "db:migrate": "node -e 'require(\"./index\").migrate()'",
+    "db:rollback": "node -e 'require(\"./index\").rollback()'",
     "db:seed": "knex seed:run"
   },
   "author": "Sulthan Ahmed & Alex Swann",

@@ -35,10 +35,7 @@ knex migrate:make <migration_name>
 ```
 Also ensure to add new seed data which can be used for local DB testing in the seed folder.
 
-Then update the package.json and peg the db:migrate script to the latest version you want to run the next migration to. In this example it will run all migrations up to the `20211011151008_user.js` migration.
-```
-"db:migrate": "knex-migrate up --to 20211011151008_user",
-```
+Then update the config.js file to specify the latest migration file to run to. Then document this in the audit log below.
 
 When new work is merged to master, update the digest for the kube job in the [modern-slavery service](https://github.com/UKHomeOffice/modern-slavery) which should be the commit SHA. The digest is also logged in the Drone console when the image is published to Quay. E.g.:
 ```

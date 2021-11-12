@@ -1,6 +1,6 @@
 {
   "name": "ms-schema",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "An migrations repo for Modern Slavery which created images for Kube Jobs",
   "main": "knexfile.js",
   "engines": {

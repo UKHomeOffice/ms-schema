@@ -1,5 +1,5 @@
-exports.up = function(knex) {
-  return knex.schema.createTable('hof', (table) => {
+exports.up = function (knex) {
+  return knex.schema.createTable('hof', table => {
     table.increments();
     table.string('type').notNullable();
     table.string('ip').notNullable();
@@ -7,6 +7,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTable('hof');
 };

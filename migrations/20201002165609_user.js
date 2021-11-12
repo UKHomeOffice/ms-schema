@@ -1,7 +1,7 @@
-exports.up = function(knex) {
-  //create user for reports table
+exports.up = function (knex) {
+  // create user for reports table
   return knex
-      .raw(`
+    .raw(`
           CREATE USER reports WITH PASSWORD '${process.env.REPORTS_USER_PASS}';
           GRANT INSERT ON reports TO reports;
           GRANT ALL ON SEQUENCE reports_id_seq to reports;
@@ -9,9 +9,9 @@ exports.up = function(knex) {
       `);
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex
-      .raw(`
+    .raw(`
           DROP OWNED BY reports;
           DROP USER reports;
       `);

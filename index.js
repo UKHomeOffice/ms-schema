@@ -3,10 +3,10 @@
 const config = require('./config');
 const knexMigrate = require('knex-migrate');
 
-async function migrate() {
-  const log = ({ action, migration }) =>
-    console.log('Doing ' + action + ' on ' + migration);
+const log = ({ action, migration }) =>
+  console.log('Doing ' + action + ' on ' + migration);
 
+async function migrate() {
   try {
     await knexMigrate('up', { to: config.latestMigration }, log);
   } catch (e) {
@@ -20,9 +20,6 @@ async function migrate() {
 }
 
 async function rollback() {
-  const log = ({ action, migration }) =>
-    console.log('Doing ' + action + ' on ' + migration);
-
   await knexMigrate('down', {}, log);
 }
 

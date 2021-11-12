@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 const config = require('./config');
@@ -8,19 +9,19 @@ const log = ({ action, migration }) =>
 
 async function migrate() {
   try {
-    await knexMigrate('up', { to: config.latestMigration }, log);
+    return await knexMigrate('up', { to: config.latestMigration }, log);
   } catch (e) {
     const migrationsAlreadyRun = e.message.includes('Migration is not pending');
 
-    if (migrationsAlreadyRun) {
-      return console.log('Migrations have already run!');
+    if (!migrationsAlreadyRun) {
+      throw e;
     }
-    throw e;
+    return console.log('Migrations have already run!');
   }
 }
 
 async function rollback() {
-  await knexMigrate('down', {}, log);
+  return await knexMigrate('down', {}, log);
 }
 
 module.exports = {

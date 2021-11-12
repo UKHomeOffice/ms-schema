@@ -27,3 +27,11 @@ DB_USER             | The postgres db username
 DB_PASS             | The postgres db password
 DB_NAME             | The postgres db name
 ```
+
+### Migrations Audit
+
+12th November 2021
+- 20211011151008_user.js
+
+Prior to 12th November 2021
+- 20201002165609_user.js

@@ -3,9 +3,8 @@ exports.up = function (knex) {
   return knex.schema.createTable('duplicates', table => {
     table.increments();
     table.timestamps(true, true);
-    table.boolean('duplicate').notNullable();
-    table.string('case_id');
-    table.string('external_id').notNullable();
+    table.string('caseID');
+    table.string('externalID').notNullable();
   });
 };
 

@@ -28,6 +28,18 @@ DB_PASS             | The postgres db password
 DB_NAME             | The postgres db name
 ```
 
+### Adding new migrations
+Add a new migration running
+```
+knex migrate:make <migration_name>
+```
+Also ensure to add new seed data for local DBs in the seed folder
+
+Then update the package.json and peg the db:migrate script to the latest version you want to run the next migration to. In this example it will run all migrations up to the `20211011151008_user.js` migration.
+```
+"db:migrate": "knex-migrate up --to 20211011151008_user",
+```
+
 ### Migrations Audit
 
 12th November 2021

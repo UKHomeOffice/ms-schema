@@ -8,8 +8,8 @@ exports.seed = function (knex) {
     .then(function () {
       // Inserts seed entries
       return knex('reports').insert([
-        {id: 1, email: 'dev@testing.com', session: '{ "my":"json"}'},
-        {id: 2, email: 'dev@test.com', session: '{ "my":"json"}'}
+        {email: 'dev@testing.com', session: '{ "my":"json"}'},
+        {email: 'dev@test.com', session: '{ "my":"json"}'}
       ]);
     });
 };

@@ -28,6 +28,28 @@ DB_PASS             | The postgres db password
 DB_NAME             | The postgres db name
 ```
 
+## Local Setup
+The migrations and seeds folders are used by knex to setup a local DB with dummy information for testing the service. These are not used in production where it is assumed a separate DB is setup for knex to connect to that is already setup.
+
+Run the following commands to setup a test DB:
+```
+brew install postgres
+brew services start postgresql
+psql postgres
+CREATE ROLE knex WITH LOGIN PASSWORD 'knex';
+ALTER ROLE knex WITH SUPERUSER;
+CREATE DATABASE knex_session;
+\q
+```
+If you download Postico for Mac (https://eggerapps.at/postico/), you can then inspect your postgres DB for example and look at the test entries inserted into the test table 'Reports'.
+
+You then need to use a knexfile with migrations and seeds folders to populate your database.
+The ms-schema repo which is used for migrations in the Modern Slavery service (https://github.com/UKHomeOffice/ms-schema) can be used as a test example and is included in this project. You can run
+```
+yarn run db:setup
+```
+from that repo to setup your database.
+
 ### Adding new migrations
 Add a new migration running
 ```

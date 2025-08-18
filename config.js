@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  latestMigration: '20211115123602_resolver'
+  latestMigration: '20250813160020_add_submitted_at'
 };

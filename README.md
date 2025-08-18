@@ -72,6 +72,9 @@ Which then should be updated in [save-return-email-alerts](https://github.com/UK
 
 ### Migrations Audit
 
+18th August 2025
+- 20250813160020_add_submitted_at.js
+
 12th November 2021
 - 20211011151008_user.js
 

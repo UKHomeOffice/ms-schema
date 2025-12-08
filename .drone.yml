@@ -14,7 +14,7 @@ trigger:
 steps:
   - name: setup
     pull: if-not-exists
-    image: node:14
+    image: node:24
     commands:
       - yarn install --frozen-lockfile
     when:
@@ -23,7 +23,7 @@ steps:
 
   - name: linting
     pull: if-not-exists
-    image: node:14
+    image: node:24
     commands:
       - yarn run test:lint
     when:
@@ -63,5 +63,3 @@ services:
 volumes:
   - name: dockersock
     temp: {}
-
-...

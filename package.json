@@ -4,7 +4,7 @@
   "description": "An migrations repo for Modern Slavery which created images for Kube Jobs",
   "main": "knexfile.js",
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=24.22.1"
   },
   "scripts": {
     "test:lint": "eslint . --config ./node_modules/eslint-config-hof/default.js",

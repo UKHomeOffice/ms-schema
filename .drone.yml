@@ -14,7 +14,7 @@ trigger:
 steps:
   - name: setup
     pull: if-not-exists
-    image: node:24
+    image: quay.io/ukhomeofficedigital/hof-nodejs:24.22.2_2-alpine@sha256:9279cf6e97dd0c1e0ea106153c2847a23a99bac3a588f7eb564d1f54eb3c92af
     commands:
       - yarn install --frozen-lockfile
     when:
@@ -23,7 +23,7 @@ steps:
 
   - name: linting
     pull: if-not-exists
-    image: node:24
+    image: quay.io/ukhomeofficedigital/hof-nodejs:24.22.2_2-alpine@sha256:9279cf6e97dd0c1e0ea106153c2847a23a99bac3a588f7eb564d1f54eb3c92af
     commands:
       - yarn run test:lint
     when:

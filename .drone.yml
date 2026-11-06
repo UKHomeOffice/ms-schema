@@ -41,6 +41,7 @@ steps:
     when:
       branch: master
       event: [push, pull_request]
+      
 
   - name: image_to_quay
     pull: if-not-exists

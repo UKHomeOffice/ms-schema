@@ -1,10 +1,6 @@
-FROM node:24.11.1-alpine3.21@sha256:5579647898d35dbc9ca22010e46c207deb6320f785822a3c5ba3a84b81b57309
+FROM quay.io/ukhomeofficedigital/hof-nodejs:24.22.2_2-alpine@sha256:9279cf6e97dd0c1e0ea106153c2847a23a99bac3a588f7eb564d1f54eb3c92af
 
 USER root
-
-# Update package index and upgrade all installed packages
-RUN apk update && apk upgrade --no-cache
-
 
 # Setup nodejs group & nodejs user
 RUN addgroup --system nodejs --gid 998 && \
